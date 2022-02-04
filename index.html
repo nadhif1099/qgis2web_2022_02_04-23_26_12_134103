@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        #map {
+            width: 1066px;
+            height: 540px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/CollectionGroupDurenTiga_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:3
+        }).fitBounds([[-6.344826619821499,106.71473085955006],[-6.206478172834834,106.98834191455714]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 3,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_CollectionGroupDurenTiga_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['@id'] !== null ? autolinker.link(feature.properties['@id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['admin_leve'] !== null ? autolinker.link(feature.properties['admin_leve'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['boundary'] !== null ? autolinker.link(feature.properties['boundary'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">is_in_muni</th>\
+                        <td>' + (feature.properties['is_in_muni'] !== null ? autolinker.link(feature.properties['is_in_muni'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">is_in_prov</th>\
+                        <td>' + (feature.properties['is_in_prov'] !== null ? autolinker.link(feature.properties['is_in_prov'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['is_in_town'] !== null ? autolinker.link(feature.properties['is_in_town'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['note'] !== null ? autolinker.link(feature.properties['note'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['is_in_city'] !== null ? autolinker.link(feature.properties['is_in_city'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['@relations'] !== null ? autolinker.link(feature.properties['@relations'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Collector</strong><br />' + (feature.properties['Collector'] !== null ? autolinker.link(feature.properties['Collector'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>OS </strong><br />' + (feature.properties['OS '] !== null ? autolinker.link(feature.properties['OS '].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Coll Task</strong><br />' + (feature.properties['Coll Task'] !== null ? autolinker.link(feature.properties['Coll Task'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CollectionGroupDurenTiga_1_0(feature) {
+            switch(String(feature.properties['name'])) {
+                case 'Bangka':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Baru':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Bukit Duri':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Ciganjur':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Cijantung':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Cikoko':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Cilandak Timur':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Cipedak':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Cipinang Melayu':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Ciracas':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Duren Tiga':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Guntur':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Halim Perdana Kusuma':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Jagakarsa':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Jati Padang':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Kalibata':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Kalisari':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Karet':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Karet Kuningan':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Karet Semanggi':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Kebagusan':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Kebon Baru':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Kuningan Barat':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Kuningan Timur':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Lenteng Agung':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Mampang Prapatan':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Manggarai':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Manggarai Selatan':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Menteng Atas':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Menteng Dalam':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pancoran':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pasar Manggis':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pasar Minggu':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pejaten Barat':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pejaten Timur':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pekayon':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pela Mampang':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pengadegan':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Pinang Ranti':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Ragunan':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Rawajati':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Setiabudi':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Srengseng Sawah':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Tanjung Barat':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Tebet Barat':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Tebet Timur':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                case 'Tegal Parang':
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_CollectionGroupDurenTiga_1',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_CollectionGroupDurenTiga_1');
+        map.getPane('pane_CollectionGroupDurenTiga_1').style.zIndex = 401;
+        map.getPane('pane_CollectionGroupDurenTiga_1').style['mix-blend-mode'] = 'normal';
+        var layer_CollectionGroupDurenTiga_1 = new L.geoJson(json_CollectionGroupDurenTiga_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CollectionGroupDurenTiga_1',
+            layerName: 'layer_CollectionGroupDurenTiga_1',
+            pane: 'pane_CollectionGroupDurenTiga_1',
+            onEachFeature: pop_CollectionGroupDurenTiga_1,
+            style: style_CollectionGroupDurenTiga_1_0,
+        });
+        bounds_group.addLayer(layer_CollectionGroupDurenTiga_1);
+        map.addLayer(layer_CollectionGroupDurenTiga_1);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Collection Group- Duren Tiga<br /><table><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Bangka0.png" /></td><td>Bangka</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Baru1.png" /></td><td>Baru</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_BukitDuri2.png" /></td><td>Bukit Duri</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Ciganjur3.png" /></td><td>Ciganjur</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Cijantung4.png" /></td><td>Cijantung</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Cikoko5.png" /></td><td>Cikoko</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_CilandakTimur6.png" /></td><td>Cilandak Timur</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Cipedak7.png" /></td><td>Cipedak</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_CipinangMelayu8.png" /></td><td>Cipinang Melayu</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Ciracas9.png" /></td><td>Ciracas</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_DurenTiga10.png" /></td><td>Duren Tiga</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Guntur11.png" /></td><td>Guntur</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_HalimPerdanaKusuma12.png" /></td><td>Halim Perdana Kusuma</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Jagakarsa13.png" /></td><td>Jagakarsa</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_JatiPadang14.png" /></td><td>Jati Padang</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Kalibata15.png" /></td><td>Kalibata</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Kalisari16.png" /></td><td>Kalisari</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Karet17.png" /></td><td>Karet</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_KaretKuningan18.png" /></td><td>Karet Kuningan</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_KaretSemanggi19.png" /></td><td>Karet Semanggi</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Kebagusan20.png" /></td><td>Kebagusan</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_KebonBaru21.png" /></td><td>Kebon Baru</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_KuninganBarat22.png" /></td><td>Kuningan Barat</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_KuninganTimur23.png" /></td><td>Kuningan Timur</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_LentengAgung24.png" /></td><td>Lenteng Agung</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_MampangPrapatan25.png" /></td><td>Mampang Prapatan</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Manggarai26.png" /></td><td>Manggarai</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_ManggaraiSelatan27.png" /></td><td>Manggarai Selatan</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_MentengAtas28.png" /></td><td>Menteng Atas</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_MentengDalam29.png" /></td><td>Menteng Dalam</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Pancoran30.png" /></td><td>Pancoran</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_PasarManggis31.png" /></td><td>Pasar Manggis</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_PasarMinggu32.png" /></td><td>Pasar Minggu</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_PejatenBarat33.png" /></td><td>Pejaten Barat</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_PejatenTimur34.png" /></td><td>Pejaten Timur</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Pekayon35.png" /></td><td>Pekayon</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_PelaMampang36.png" /></td><td>Pela Mampang</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Pengadegan37.png" /></td><td>Pengadegan</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_PinangRanti38.png" /></td><td>Pinang Ranti</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Ragunan39.png" /></td><td>Ragunan</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Rawajati40.png" /></td><td>Rawajati</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_Setiabudi41.png" /></td><td>Setiabudi</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_SrengsengSawah42.png" /></td><td>Srengseng Sawah</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_TanjungBarat43.png" /></td><td>Tanjung Barat</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_TebetBarat44.png" /></td><td>Tebet Barat</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_TebetTimur45.png" /></td><td>Tebet Timur</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_TegalParang46.png" /></td><td>Tegal Parang</td></tr><tr><td style="text-align: center;"><img src="legend/CollectionGroupDurenTiga_1_47.png" /></td><td></td></tr></table>': layer_CollectionGroupDurenTiga_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_CollectionGroupDurenTiga_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 7pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_CollectionGroupDurenTiga_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_CollectionGroupDurenTiga_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_CollectionGroupDurenTiga_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_CollectionGroupDurenTiga_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_CollectionGroupDurenTiga_1]);
+        });
+        </script>
+    </body>
+</html>
